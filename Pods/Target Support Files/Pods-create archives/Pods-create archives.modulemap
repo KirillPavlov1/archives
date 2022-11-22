@@ -1,0 +1,6 @@
+framework module Pods_create_archives {
+  umbrella header "Pods-create archives-umbrella.h"
+
+  export *
+  module * { export * }
+}

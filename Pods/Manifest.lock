@@ -1,0 +1,33 @@
+PODS:
+  - ApphudSDK (2.3.0)
+  - PLzmaSDK (1.2.5):
+    - PLzmaSDK/libplzma (= 1.2.5)
+    - PLzmaSDK/Swift (= 1.2.5)
+  - PLzmaSDK/libplzma (1.2.5)
+  - PLzmaSDK/Swift (1.2.5):
+    - PLzmaSDK/libplzma
+  - SSZipArchive (2.4.2)
+  - Zip (2.1.2)
+
+DEPENDENCIES:
+  - ApphudSDK
+  - PLzmaSDK (= 1.2.5)
+  - SSZipArchive
+  - Zip (~> 2.1)
+
+SPEC REPOS:
+  trunk:
+    - ApphudSDK
+    - PLzmaSDK
+    - SSZipArchive
+    - Zip
+
+SPEC CHECKSUMS:
+  ApphudSDK: 2bc3e25d844ba63d96afc4d21531241f96017d6f
+  PLzmaSDK: c9c98c848e5a36f2dae08db2645e9072b0426232
+  SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
+  Zip: b3fef584b147b6e582b2256a9815c897d60ddc67
+
+PODFILE CHECKSUM: ce8fd9a1e190e564f66734430f2d5456d5a3d178
+
+COCOAPODS: 1.10.2

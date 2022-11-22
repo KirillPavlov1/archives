@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-create archives/Pods-create archives-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ApphudSDK/ApphudSDK.framework
+${BUILT_PRODUCTS_DIR}/PLzmaSDK/PLzmaSDK.framework
+${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
+${BUILT_PRODUCTS_DIR}/Zip/Zip.framework
