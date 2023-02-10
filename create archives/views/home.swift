@@ -41,9 +41,10 @@ struct home: View {
     @StateObject var rou: router
     @State var searchOn = false
     @State var searchText = ""
+    @Binding var isLoading: Bool
 
     func clearitemsSwitchON(){
-//        itemsSwitchON.removeAll()
+        //itemsSwitchON.removeAll()
     }
 
     func changeName()
@@ -258,7 +259,7 @@ struct home: View {
                     .frame(width: UIScreen.sW * 0.07, height: UIScreen.sW * 0.07)
                     .padding(.trailing)
             }
-            Button(action: {editing.toggle();clearitemsSwitchON()}){
+            Button(action: {editing.toggle()}){
                 Image("pen")
                     .resizable()
                     .frame(width: UIScreen.sW * 0.07, height: UIScreen.sW * 0.07)
@@ -312,19 +313,20 @@ struct home: View {
             VStack{
                 if (compress)
                 {
-                    compressView(isVis: $compress, itemsSwitchON: $itemsSwitchON)
+                    compressView(isVis: $compress, itemsSwitchON: $itemsSwitchON, isLoading: $isLoading, rou: rou)
                 }
                 if (encrypt)
                 {
-                    encryptView(isVis: $encrypt, itemsSwitchON: $itemsSwitchON, rou: rou)
+                    encryptView(isVis: $encrypt, itemsSwitchON: $itemsSwitchON, rou: rou, isLoading: $isLoading)
                 }
             }
+            
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        home(isVis: .constant(false), editing: .constant(false), compress: .constant(false), encrypt: .constant(false), itemsSwitchON: .constant([]), rou: router())
+        home(isVis: .constant(false), editing: .constant(false), compress: .constant(false), encrypt: .constant(false), itemsSwitchON: .constant([]), rou: router(), isLoading: .constant(false))
     }
 }

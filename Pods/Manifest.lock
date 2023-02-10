@@ -1,5 +1,8 @@
 PODS:
   - ApphudSDK (2.3.0)
+  - AppsFlyerFramework (6.9.0):
+    - AppsFlyerFramework/Main (= 6.9.0)
+  - AppsFlyerFramework/Main (6.9.0)
   - PLzmaSDK (1.2.5):
     - PLzmaSDK/libplzma (= 1.2.5)
     - PLzmaSDK/Swift (= 1.2.5)
@@ -11,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - ApphudSDK
+  - AppsFlyerFramework
   - PLzmaSDK (= 1.2.5)
   - SSZipArchive
   - Zip (~> 2.1)
@@ -18,16 +22,18 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ApphudSDK
+    - AppsFlyerFramework
     - PLzmaSDK
     - SSZipArchive
     - Zip
 
 SPEC CHECKSUMS:
   ApphudSDK: 2bc3e25d844ba63d96afc4d21531241f96017d6f
+  AppsFlyerFramework: 932654224d7482fef4c3fa66197874f62cd1a792
   PLzmaSDK: c9c98c848e5a36f2dae08db2645e9072b0426232
   SSZipArchive: e7b4f3d9e780c2acc1764cd88fbf2de28f26e5b2
   Zip: b3fef584b147b6e582b2256a9815c897d60ddc67
 
-PODFILE CHECKSUM: ce8fd9a1e190e564f66734430f2d5456d5a3d178
+PODFILE CHECKSUM: e6d1625bd1e9c038e03e3e37bd07be2bd05cf109
 
 COCOAPODS: 1.10.2

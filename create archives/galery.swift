@@ -115,8 +115,21 @@ struct VideosPicker: UIViewControllerRepresentable {
             new.type = "v"
             new.day = date
             new.name = "video" + String(items.count  + 1)
-            new.data = video.absoluteString
-            new.size = URL(string: video.absoluteString)?.fSString
+            let fileManager = FileManager.default
+            let documentsFolder: URL? = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            var folderURL = documentsFolder!.appendingPathComponent("videoFolder")
+            let folderExists = (try? folderURL.checkResourceIsReachable()) ?? false
+            let fileURL = URL(string: video.absoluteString)!
+            let fileName = fileURL.lastPathComponent
+            do {
+                if !folderExists {
+                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false)
+                }
+                folderURL.appendPathComponent(String(describing: fileName))
+                try fileManager.copyItem(at: fileURL, to: folderURL)
+            } catch { print(error) }
+            new.data = folderURL.absoluteString
+            new.size = URL(string: new.data!)?.fSString
             new.sizeInt = Int64(Int(URL(string: new.data!)!.fS))
             do {
                 try viewContext.save()

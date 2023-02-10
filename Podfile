@@ -10,4 +10,5 @@ target 'create archives' do
 	pod 'SSZipArchive'
 	pod 'PLzmaSDK', '1.2.5'
 	pod 'ApphudSDK'
+	pod 'AppsFlyerFramework'
 end

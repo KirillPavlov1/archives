@@ -31,6 +31,13 @@ extension SKProduct {
         return formatter.string(from: price)
     }
     
+    var usdPrice: String? {
+        let formatter = SKProduct.formatter
+
+        return formatter.string(from: price)
+    }
+    
+    
     var localizedTrialPrice: String? {
         guard let price = introductoryPrice?.price  else {
             return nil

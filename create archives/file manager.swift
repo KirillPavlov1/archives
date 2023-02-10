@@ -10,24 +10,41 @@ import SwiftUI
 
 struct FilePicker: UIViewControllerRepresentable {
 
-    var path: String?
+    @State var path: URL = URL(string: "https://www.apple.com")!
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ObjectArchive.data, ascending: true)],
         animation: .default)
     private var items: FetchedResults<ObjectArchive>
+    @State var fileContent = ""
 
-    private func plusFile(fURL: String) {
+    private func plusFile() {
         let date = Date()
-        if (fURL != "")
+        if ((path.absoluteString) != "https://www.apple.com")
         {
+            let fileManager = FileManager.default
+            let documentsFolder: URL? = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            var folderURL = documentsFolder!.appendingPathComponent("filesFolder")
+            let folderExists = (try? folderURL.checkResourceIsReachable()) ?? false
+            let fileURL = URL(string: path.absoluteString)!
+            let fileName = fileURL.lastPathComponent
+            do {
+                if !folderExists {
+                    try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false)
+                }
+                folderURL.appendPathComponent(String(describing: fileName))
+                if FileManager.default.fileExists(atPath: folderURL.path) {
+                    return
+                }
+                try fileManager.copyItem(at: fileURL, to: folderURL)
+            } catch { print(error) }
             let new = ObjectArchive(context: viewContext)
             new.type = "f"
             new.day = date
             new.name = "file" + String(items.count  + 1)
-            new.data = fURL
-            new.size = URL(string: fURL)?.fSString
-            new.sizeInt = Int64(Int(URL(string: fURL)!.fS))
+            new.data = folderURL.absoluteString
+            new.size = URL(string: new.data!)?.fSString
+            new.sizeInt = Int64(Int(URL(string: new.data!)!.fS))
             do {
                 try viewContext.save()
             } catch {
@@ -60,8 +77,21 @@ struct FilePicker: UIViewControllerRepresentable {
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]){
-            father.path = urls[0].absoluteString
-            self.father.plusFile(fURL: father.path!)
+            do {
+                if urls[0].startAccessingSecurityScopedResource() {
+                father.path = urls[0]
+                father.plusFile()
+                do { urls[0].stopAccessingSecurityScopedResource() }
+                }
+                else {
+                            // Handle denied access
+                }
+                } catch {
+                        // Handle failure.
+                    print("Unable to read file contents")
+                    print(error.localizedDescription)
+                }
+           
         }
     }
 }

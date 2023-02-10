@@ -11,7 +11,6 @@ import SwiftUI
 struct FileImageVideo: View{
     @Binding var editing: Bool
     @Binding var itemsSwitchON: [ObjectArchive]
-    @State var switchON = false
     var item: ObjectArchive
     
     func toShare(s: String){
@@ -25,7 +24,7 @@ struct FileImageVideo: View{
             Circle()
                 .strokeBorder(Color.white, lineWidth: 1.5)
                 .frame(width: UIScreen.sW * 0.05, height: UIScreen.sW * 0.05)
-                if (switchON)
+            if (itemsSwitchON.contains(item))
                 {
                     Circle()
                         .fill(Color.white)
@@ -36,7 +35,7 @@ struct FileImageVideo: View{
         .onTapGesture {
             if (editing)
             {
-                switchON.toggle()
+                itemsSwitchON.append(item)
             }
         }
     }
@@ -74,9 +73,7 @@ struct FileImageVideo: View{
                     .foregroundColor(Color("text1"))
 
             }
-            
             Spacer()
-            
             VStack(alignment: .trailing){
                 if (editing)
                 {
@@ -97,15 +94,14 @@ struct FileImageVideo: View{
             }
         }
         .frame(width: UIScreen.sW * 0.95, height: UIScreen.sH * 0.07, alignment: .center)
-        .background(switchON && editing ? Color(red: 0.4, green: 0.29, blue: 1) : Color(red: 0.2, green: 0.2, blue: 0.247))
+        .background(itemsSwitchON.contains(item) && editing ? Color(red: 0.4, green: 0.29, blue: 1) : Color(red: 0.2, green: 0.2, blue: 0.247))
         .cornerRadius(15)
         .onTapGesture {
-            switchON.toggle()
-            if (switchON)
+            if (!itemsSwitchON.contains(item))
             {
                 itemsSwitchON.append(item)
             }
-            else if (!switchON)
+            else
             {
                 itemsSwitchON = itemsSwitchON.filter{ $0 != item}
             }

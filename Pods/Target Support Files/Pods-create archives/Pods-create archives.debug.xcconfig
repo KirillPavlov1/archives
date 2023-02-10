@@ -1,10 +1,10 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ApphudSDK" "${PODS_CONFIGURATION_BUILD_DIR}/PLzmaSDK" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive" "${PODS_CONFIGURATION_BUILD_DIR}/Zip"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ApphudSDK" "${PODS_CONFIGURATION_BUILD_DIR}/PLzmaSDK" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive" "${PODS_CONFIGURATION_BUILD_DIR}/Zip" "${PODS_ROOT}/AppsFlyerFramework" "${PODS_XCFRAMEWORKS_BUILD_DIR}/AppsFlyerLib"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ApphudSDK/ApphudSDK.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PLzmaSDK/PLzmaSDK.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive/SSZipArchive.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Zip/Zip.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -l"c++" -l"iconv" -l"z" -framework "ApphudSDK" -framework "PLzmaSDK" -framework "SSZipArchive" -framework "Security" -framework "StoreKit" -framework "Zip"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"iconv" -l"z" -framework "ApphudSDK" -framework "AppsFlyerLib" -framework "CoreTelephony" -framework "PLzmaSDK" -framework "SSZipArchive" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "Zip"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

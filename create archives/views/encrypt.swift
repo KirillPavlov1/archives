@@ -22,6 +22,7 @@ struct encryptView: View{
     @State var password: String = ""
     @State var zip: Bool = true
     @StateObject var rou: router
+    @Binding var isLoading: Bool
 
     func subscribe1(){
         if (Apphud.hasActiveSubscription()){
@@ -64,7 +65,7 @@ struct encryptView: View{
             }
             .padding(.bottom, UIScreen.sH * 0.13)
             if presentAlert{
-                AlertControllerView(textfieldText: $password, showingAlert: $presentAlert, alertTitle: "Password", alertMessage: "Password for archive", zip: $zip, itemsSwitchON: $itemsSwitchON)
+                AlertControllerView(textfieldText: $password, showingAlert: $presentAlert, alertTitle: "Password", alertMessage: "Password for archive", zip: $zip, itemsSwitchON: $itemsSwitchON, isLoading: $isLoading)
             }
         }
         .onTapGesture {
@@ -75,6 +76,6 @@ struct encryptView: View{
 
 struct encryptView_Previews: PreviewProvider {
     static var previews: some View {
-        encryptView(isVis: .constant(true), inFolder: "", itemsSwitchON: .constant([]), rou: router())
+        encryptView(isVis: .constant(true), inFolder: "", itemsSwitchON: .constant([]), rou: router(), isLoading: .constant(false))
     }
 }

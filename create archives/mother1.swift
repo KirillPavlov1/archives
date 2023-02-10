@@ -17,16 +17,18 @@ struct Mother1: View{
     @State var itemsSwitchON: [ObjectArchive] = []
     @State var compress = false
     @State var encrypt = false
+    @State var isLoading = false
 
     func deleteitemsSwitchON(){
         for i in itemsSwitchON{
             do{
                 try FileManager.default.removeItem(at: URL(string: i.data!)!)
-                viewContext.delete(i)
+                
             }
             catch{
                 print(error)
             }
+            viewContext.delete(i)
         }
         do {
             try viewContext.save()
@@ -136,8 +138,7 @@ struct Mother1: View{
         ZStack{
             switch rou.currentPage1 {
                 case .home:
-                home(isVis: $isVis, editing: $editing, compress: $compress, encrypt: $encrypt, itemsSwitchON: $itemsSwitchON, rou: rou)
-                
+                home(isVis: $isVis, editing: $editing, compress: $compress, encrypt: $encrypt, itemsSwitchON: $itemsSwitchON, rou: rou, isLoading: $isLoading)
                 case .settings:
                 settings(rou: rou)
             }
@@ -155,6 +156,9 @@ struct Mother1: View{
             .edgesIgnoringSafeArea(.bottom)
             if (isVis){
                 addView(isVis: $isVis)
+            }
+            if (isLoading){
+                loadingView()
             }
         }
     }

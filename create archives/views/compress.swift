@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ApphudSDK
 
 struct compressView: View{
 
@@ -18,15 +19,39 @@ struct compressView: View{
     var inFolder: String = ""
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var itemsSwitchON: [ObjectArchive]
+    @Binding var isLoading: Bool
+    @StateObject var rou: router
     
     func createArchive(){
-        var a = archiveCreate()
-        a.createZip(itemsSwitchON)
+        if (Apphud.hasActiveSubscription()){
+            isLoading = true
+            DispatchQueue.global(qos: .background).async {
+                sleep(1)
+                DispatchQueue.main.async {
+                    var a = archiveCreate(isLoading: $isLoading)
+                    a.createZip(itemsSwitchON)
+                }
+            }
+        }
+        else{
+            rou.currentPage0 = .paywall
+        }
     }
     
     func create7zArchive(){
-        let a = archiveCreate()
-        a.create7z(itemsSwitchON)
+        if (Apphud.hasActiveSubscription()){
+            isLoading = true
+            DispatchQueue.global(qos: .background).async {
+                sleep(1)
+                DispatchQueue.main.async {
+                    let a = archiveCreate(isLoading: $isLoading)
+                    a.create7z(itemsSwitchON)
+                }
+            }
+        }
+        else{
+            rou.currentPage0 = .paywall
+        }
     }
 
     var body: some View{
@@ -58,6 +83,6 @@ struct compressView: View{
 
 struct compressView_Previews: PreviewProvider {
     static var previews: some View {
-        compressView(isVis: .constant(true), inFolder: "", itemsSwitchON: .constant([]))
+        compressView(isVis: .constant(true), inFolder: "", itemsSwitchON: .constant([]), isLoading: .constant(false), rou: router())
     }
 }

@@ -24,6 +24,7 @@
 		ED5022632909958500AB6393 /* FileImageVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5022622909958500AB6393 /* FileImageVideo.swift */; };
 		ED548C292910217200B321D2 /* archives.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED548C282910217200B321D2 /* archives.swift */; };
 		ED63ED8B2911AF5400E301D3 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED63ED8A2911AF5400E301D3 /* Alert.swift */; };
+		ED94EC6B2935784A00BFAFFC /* isLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94EC6A2935784A00BFAFFC /* isLoading.swift */; };
 		EDB21A52290D97AB00F337F1 /* compress.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A51290D97AB00F337F1 /* compress.swift */; };
 		EDB21A54290D997800F337F1 /* encrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A53290D997800F337F1 /* encrypt.swift */; };
 		EDB21A56290F18FB00F337F1 /* listView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB21A55290F18FB00F337F1 /* listView.swift */; };
@@ -54,6 +55,7 @@
 		ED5022622909958500AB6393 /* FileImageVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImageVideo.swift; sourceTree = "<group>"; };
 		ED548C282910217200B321D2 /* archives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = archives.swift; sourceTree = "<group>"; };
 		ED63ED8A2911AF5400E301D3 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		ED94EC6A2935784A00BFAFFC /* isLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isLoading.swift; sourceTree = "<group>"; };
 		EDB21A51290D97AB00F337F1 /* compress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compress.swift; sourceTree = "<group>"; };
 		EDB21A53290D997800F337F1 /* encrypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = encrypt.swift; sourceTree = "<group>"; };
 		EDB21A55290F18FB00F337F1 /* listView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 		EDDBEC322912B3B800ACE2D4 /* paywall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paywall.swift; sourceTree = "<group>"; };
 		EDDBEC342912E01600ACE2D4 /* skproduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skproduct.swift; sourceTree = "<group>"; };
 		EDDBEC3729142B4F00ACE2D4 /* create archives.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "create archives.entitlements"; sourceTree = "<group>"; };
+		EDE8E0E12939612200F67953 /* create archivesDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "create archivesDebug.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 		ED50223A29069B2C00AB6393 /* create archives */ = {
 			isa = PBXGroup;
 			children = (
+				EDE8E0E12939612200F67953 /* create archivesDebug.entitlements */,
 				EDDBEC3729142B4F00ACE2D4 /* create archives.entitlements */,
 				EDB21A59290FEB6E00F337F1 /* create-archives-Info.plist */,
 				ED50223B29069B2C00AB6393 /* create_archivesApp.swift */,
@@ -158,6 +162,7 @@
 				EDB21A57290FBAD800F337F1 /* settings.swift */,
 				EDB21A5A290FF6DA00F337F1 /* onboarding.swift */,
 				EDDBEC322912B3B800ACE2D4 /* paywall.swift */,
+				ED94EC6A2935784A00BFAFFC /* isLoading.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 			files = (
 				EDB21A56290F18FB00F337F1 /* listView.swift in Sources */,
 				EDDBEC352912E01600ACE2D4 /* skproduct.swift in Sources */,
+				ED94EC6B2935784A00BFAFFC /* isLoading.swift in Sources */,
 				ED50224F2906A20B00AB6393 /* utils.swift in Sources */,
 				ED5022632909958500AB6393 /* FileImageVideo.swift in Sources */,
 				ED50225C2907E15800AB6393 /* add.swift in Sources */,
@@ -425,29 +431,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "create archives/create archives.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CODE_SIGN_ENTITLEMENTS = "create archives/create archivesDebug.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3FJW95GTGN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "create-archives-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "create archive";
+				INFOPLIST_KEY_CFBundleDisplayName = "zip-7z archive";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.CreateArchive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com.CreateArchive;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -461,28 +469,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "create archives/create archives.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3FJW95GTGN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "create-archives-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "create archive";
+				INFOPLIST_KEY_CFBundleDisplayName = "zip-7z archive";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.CreateArchive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = com.CreateArchive;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

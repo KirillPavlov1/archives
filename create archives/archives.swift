@@ -18,6 +18,7 @@ struct archiveCreate{
         sortDescriptors: [SortDescriptor(\.name)],
         animation: .default)
     public var itemsDB: FetchedResults<ObjectArchive>
+    @Binding var isLoading: Bool
 
     func saveToCD(){
 
@@ -43,6 +44,7 @@ struct archiveCreate{
                 try! FileManager.default.copyItem(atPath: i.path, toPath: folderPath.path + "/" + i.lastPathComponent)
             }
             SSZipArchive.createZipFile(atPath: zipFilePath!.path, withContentsOfDirectory: folderPath.path, keepParentDirectory: false, withPassword: password)
+            try! FileManager.default.removeItem(atPath: folderPath.path)
             let date = Date()
             let new = ObjectArchive(context: viewContext)
             new.type = "a"
@@ -61,6 +63,7 @@ struct archiveCreate{
         catch {
           print("Something went wrong")
         }
+        isLoading = false
     }
     
     func create7z(_ items: [ObjectArchive]){
@@ -107,6 +110,7 @@ struct archiveCreate{
         } catch let exception as Exception {
                 print("Exception: \(exception)")
         }
+        isLoading = false
     }
     
     func create7zEncrypt(_ password: String,_ items: [ObjectArchive]){
@@ -156,6 +160,7 @@ struct archiveCreate{
         } catch let exception as Exception {
                 print("Exception: \(exception)")
         }
+        isLoading = false
     }
 
     func createZip(_ items: [ObjectArchive]){
@@ -187,6 +192,7 @@ struct archiveCreate{
         catch {
           print("Something went wrong")
         }
+        isLoading = false
     }
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Mother0: View{
 
-    @StateObject var rou = router()
+    @StateObject var rou: router
     
     var body: some View{
         switch rou.currentPage0 {

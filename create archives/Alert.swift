@@ -19,6 +19,7 @@ struct AlertControllerView: UIViewControllerRepresentable {
     var alertMessage: String
     @Binding var zip: Bool
     @Binding var itemsSwitchON: [ObjectArchive]
+    @Binding var isLoading: Bool
     //
     
     // A Coordinator class will coordinate our View Controller to the SwiftUI view giving us the ability to respond to changes
@@ -27,13 +28,25 @@ struct AlertControllerView: UIViewControllerRepresentable {
     }
     
     func createEncryptArchive(){
-        let a = archiveCreate()
-        a.createZipEncrypt(textfieldText, itemsSwitchON)
+        isLoading = true
+        DispatchQueue.global(qos: .background).async {
+            sleep(1)
+            DispatchQueue.main.async {
+                let a = archiveCreate(isLoading: $isLoading)
+                a.createZipEncrypt(textfieldText, itemsSwitchON)
+            }
+        }
     }
     
     func createEncrypt7zArchive(){
-        let a = archiveCreate()
-        a.create7zEncrypt(textfieldText, itemsSwitchON)
+        isLoading = true
+        DispatchQueue.global(qos: .background).async {
+            sleep(1)
+            DispatchQueue.main.async {
+                let a = archiveCreate(isLoading: $isLoading)
+                a.create7zEncrypt(textfieldText, itemsSwitchON)
+            }
+        }
     }
     
     class Coordinator: NSObject, UITextFieldDelegate {

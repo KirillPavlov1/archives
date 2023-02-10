@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 import ApphudSDK
+import AppsFlyerLib
+import StoreKit
 
 enum Page0{
     case onboarding
@@ -24,7 +26,7 @@ enum Page1{
 class router: ObservableObject{
     @Published var currentPage0: Page0 = Apphud.hasActiveSubscription() ? .main : .onboarding
     @Published var currentPage1: Page1 = .home
-    private var product: ApphudProduct!
+    private var product: ApphudProduct! = nil
     private var title: String?
     private var subtitle: String?
     private var subunits: Int?
@@ -37,9 +39,14 @@ class router: ObservableObject{
     init()
     {
         configureProduct()
+        if (Apphud.hasActiveSubscription())
+        {
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        }
     }
 
     func configure() {
+        
         guard let skProduct = product.skProduct else { return }
         let subUnits = skProduct.subscriptionPeriod?.numberOfUnits
         let trialUnits = skProduct.introductoryPrice?.subscriptionPeriod.numberOfUnits
@@ -54,8 +61,20 @@ class router: ObservableObject{
         Apphud.purchase(product) { [self]result in
             if let subscription = result.subscription, subscription.isActive(){
                 currentPage0 = .main
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
+                withValues: [
+                    AFEventParamRevenue: String(format: "%f", product.skProduct!.price),
+                    AFEventParamCurrency:"USD"
+                ]);
             } else if let purchase = result.nonRenewingPurchase, purchase.isActive(){
                 currentPage0 = .main
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                AppsFlyerLib.shared().logEvent(AFEventPurchase,
+                withValues: [
+                    AFEventParamRevenue: String(format: "%f", product.skProduct!.price),
+                    AFEventParamCurrency:"USD"
+                ]);
             } else {
             }
         }
@@ -65,6 +84,7 @@ class router: ObservableObject{
         Apphud.restorePurchases{ subscriptions, purchases, error in
            if Apphud.hasActiveSubscription(){
                self.currentPage0 = .main
+               UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
            } else {
            }
         }

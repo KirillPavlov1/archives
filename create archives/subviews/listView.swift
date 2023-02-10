@@ -31,30 +31,12 @@ struct ListView: View {
         let activityVC = UIActivityViewController(activityItems: [newUrl], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
-
-    var whiteRound: some View{
-        ZStack{
-            Circle()
-                .strokeBorder(Color.white, lineWidth: 1.5)
-                .frame(width: UIScreen.sW * 0.05, height: UIScreen.sW * 0.05)
-                if (switchON)
-                {
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: UIScreen.sW * 0.034, height: UIScreen.sW * 0.034)
-                }
-        }
-        .padding(.trailing, 12)
-        .onTapGesture {
-            switchON.toggle()
-        }
-    }
     
     var body: some View {
         ScrollView{
             VStack{
                 ForEach(items){ item in
-                    if (strncmp(item.name, searchText, strlen(searchText)) == 0){
+                    if (strncmp(item.name, searchText, strlen(searchText)) == 0  && items.contains(item)){
                         FileImageVideo(editing: $editing, itemsSwitchON: $itemsSwitchON, item: item)
                     }
                 }
